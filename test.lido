@@ -1,0 +1,22 @@
+ATTR ProgPtg: PTGNode;
+
+SYMBOL Program COMPUTE
+  PGTOut(PTGFrame(THIS.ProgPtg));
+END;
+
+
+ATTR Ptg: PTGNode;
+
+RULE: Exp ::= Identifier Number COMPUTE
+  Exp.Ptg = PTGExp(Identifier.Ptg, Number.Ptg);
+END;
+
+
+RULE: Number ::= Int COMPUTE
+  Number.Ptg = PTGNumber(Int);
+END;
+
+RULE: Identifier ::= Word COMPUTE
+  Number.Ptg = PTGIdenfier(StringTable(Word));
+END;
+

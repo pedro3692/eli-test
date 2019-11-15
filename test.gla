@@ -1,0 +1,3 @@
+Int:  $[0-9]+ [mkint] 
+Word: $[a-zA-Z]+ [mkstr]
+Garbage: $[.\\t\\n\ ]+ 

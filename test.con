@@ -1,0 +1,4 @@
+Program: Exp+.
+Exp: Identifier ':' Number ';'.
+Number: Int.
+Identifier: Word.
