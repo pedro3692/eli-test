@@ -7,9 +7,6 @@ END;
 
 ATTR Ptg: PTGNode;
 
-RULE: Exp ::= Identifier Number COMPUTE
-  Exp.Ptg = PTGExp(Identifier.Ptg, Number.Ptg);
-END;
 
 
 RULE: Number ::= Int COMPUTE
@@ -20,3 +17,25 @@ RULE: Identifier ::= Word COMPUTE
   Number.Ptg = PTGIdenfier(StringTable(Word));
 END;
 
+ATTR Sym: int;
+
+CHAIN ProgChn: PtgNode;
+
+SYMBOL Program COMPUTE
+  CHAINSTART HEAD.ProgChn = PgtNULL;
+  SYNT.ProgPtg = TAIL.ProgChn;
+END;
+
+
+RULE: Exp ::= Identifier ':' Number ';' COMPUTE
+  Exp.ProgChn = PTGSeq(Exp.ProgChn, PGTExp(Identifier.Ptg, Number.Ptg));
+END;
+
+
+SYMBOL Number INHERITS IdDefScope COMPUTE 
+    SYNT.Sym = TERM;
+END;
+
+SYMBOL Identifier INHERITS IdDefScope COMPUTE 
+    SYNT.Sym = TERM;
+END;
