@@ -1,4 +1,4 @@
-Frame: "Exp{ " $ " }"
+Program: "Output{\n" $ "}\n"
 Exp: $ $
-Number: "number: " $ int
-Identifier: "word: " $ string
+Number: "number: " $ int ",\n"
+Identifier: "word: " $ string " -> "
